@@ -1,0 +1,20 @@
+{
+  "COVERAGE_PROTOCOL_SHA256.txt": "7b7c444d00f54c3e08f291b63288e9f5ddfc381eb599ed9461555023f15705a3",
+  "PROTOCOL_SHA256.txt": "01caf5ba86cc864ac22f0c519459790d84f7870e3794c28954d53e7505f89c2b",
+  "coverage_extension_protocol.json": "d718bdafe85136763ae4fe875c23f470c77b1591f297932225f5196c2b7f9c43",
+  "protocol.json": "ab260e2e3463b60fce667886a20e226ad647c43e2fe3dcb4878653320c3f7dc0",
+  "results/coverage_law_diagnostics.csv": "f9f19cef1c16c288825747b84f28be7ba50835deb99777758a0cf19c8e9357d5",
+  "results/coverage_main.csv": "68ec06701a07d0e133661c1e55e288a24fa02274ba715648667d46ad4ed4bf53",
+  "results/coverage_raw.npz": "97a7c9d264208f235fc71aa4d4da73fca4d5bde084263896d5fe0fc9ceeb9e74",
+  "results/coverage_results.json": "d8beb4d5f81ff1df240051a0d3a4c4d77119625cfc52cc7e57a7cf3453cad261",
+  "results/environment.json": "1aca6d3fbffa310abd14db500c4c4a20f450528271a043ee12399bcf49786894",
+  "results/exact_integer_audit.json": "e28dd9ad62ca98d4700b3871a651efcf760cc152ce779c4be87f14084e997397",
+  "results/exploratory_search.json": "fe3d28e24a3a30eccc76d51ad98bc2d7811dcb9f62a276c50db30c9b99f216b9",
+  "results/interpolation_certificates.json": "71ff81458d454ebe0ee5c13e97bf142b92c8317b5a36405accc83a0d9bb3f878",
+  "results/resource_summary.json": "35075cda110d65ea92682f7a616317830e937b4a4012cfcef0938aa69a884a97",
+  "source/coverage_embedding.py": "01893be3df78084a56ead93332d448e1d9d283ca7bc75e2ea34d252777108b04",
+  "source/interpolation_certificate.py": "075ab30188009d6a7c4ab0f04252d6e384de0a4d654c02f8777998dc5dc23bda",
+  "source/search_witness.py": "8be71d42e94186c011af1b3b1fc0dc24f3ec05f30d11a467058cf67d6db476ca",
+  "source/verify_integer_witnesses.py": "141cd5ca45989cf4a5ffb9757188903a594724f9e238bc37452026cc9f85c562",
+  "tests/test_research.py": "b9ea9cd54f09937a43577e2ac61fc58e88338ba4f04424989d918554f870e1e7"
+}

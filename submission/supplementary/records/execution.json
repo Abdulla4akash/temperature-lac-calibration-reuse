@@ -1,0 +1,79 @@
+[
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "source/verify_integer_witnesses.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission_rerun/work",
+    "returncode": 0,
+    "log": "command_01.txt",
+    "wall_seconds": 1.5233747229999608,
+    "child_cpu_seconds": 1.522434
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "source/interpolation_certificate.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission_rerun/work",
+    "returncode": 0,
+    "log": "command_02.txt",
+    "wall_seconds": 1.4857814609999878,
+    "child_cpu_seconds": 1.484851
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "source/coverage_embedding.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission_rerun/work",
+    "returncode": 0,
+    "log": "command_03.txt",
+    "wall_seconds": 4.993409143000008,
+    "child_cpu_seconds": 4.916147
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "tests/test_research.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission_rerun/work",
+    "returncode": 0,
+    "log": "command_04.txt",
+    "wall_seconds": 1.8750100879999536,
+    "child_cpu_seconds": 1.8740539999999992
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "/mnt/data/tmlr_temperature_lac/submission/supplementary/code/audit_checks.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission/supplementary",
+    "returncode": 0,
+    "log": "command_05.txt",
+    "wall_seconds": 5.046584198000005,
+    "child_cpu_seconds": 5.045513
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "/mnt/data/tmlr_temperature_lac/submission/supplementary/code/chain_certificate.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission/supplementary",
+    "returncode": 0,
+    "log": "command_06.txt",
+    "wall_seconds": 1.353106079999975,
+    "child_cpu_seconds": 1.351296000000001
+  },
+  {
+    "command": [
+      "/opt/pyvenv/bin/python",
+      "/mnt/data/tmlr_temperature_lac/submission/supplementary/code/boundary_tests.py"
+    ],
+    "cwd": "/mnt/data/tmlr_temperature_lac/submission/supplementary",
+    "returncode": 0,
+    "log": "command_07.txt",
+    "wall_seconds": 2.9126819959999466,
+    "child_cpu_seconds": 2.910416999999999
+  }
+]

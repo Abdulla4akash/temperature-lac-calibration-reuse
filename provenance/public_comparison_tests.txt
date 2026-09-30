@@ -1,0 +1,13 @@
+test_extra_or_missing_array_keys_fail (test_reproduction_compare.ComparisonTests.test_extra_or_missing_array_keys_fail) ... ok
+test_identical_outputs_are_exact (test_reproduction_compare.ComparisonTests.test_identical_outputs_are_exact) ... ok
+test_last_bit_differences_are_reported_separately (test_reproduction_compare.ComparisonTests.test_last_bit_differences_are_reported_separately) ... ok
+test_material_array_difference_fails (test_reproduction_compare.ComparisonTests.test_material_array_difference_fails) ... ok
+test_material_summary_difference_fails (test_reproduction_compare.ComparisonTests.test_material_summary_difference_fails) ... ok
+test_reordered_or_malformed_rows_fail (test_reproduction_compare.ComparisonTests.test_reordered_or_malformed_rows_fail) ... ok
+test_schema_labels_counts_and_nonfinite_summaries_fail (test_reproduction_compare.ComparisonTests.test_schema_labels_counts_and_nonfinite_summaries_fail) ... ok
+test_shape_dtype_and_nonfinite_changes_fail (test_reproduction_compare.ComparisonTests.test_shape_dtype_and_nonfinite_changes_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.015s
+
+OK

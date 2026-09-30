@@ -1,0 +1,24 @@
+--- original/references.bib
++++ revised/references.bib
+@@ -54,7 +54,17 @@
+ @article{haussler1995,
+  author={Haussler, David},
+  title={Sphere Packing Numbers for Subsets of the {Boolean} $n$-Cube with Bounded {Vapnik--Chervonenkis} Dimension},
+- journal={Journal of Combinatorial Theory, Series A},volume={69},number={2},pages={217--232},year={1995}}
+-@book{vershynin2018,
+- author={Vershynin, Roman},title={High-Dimensional Probability: An Introduction with Applications in Data Science},
+- publisher={Cambridge University Press},year={2018}}
++ journal={Journal of Combinatorial Theory, Series A},volume={69},number={2},pages={217--232},year={1995},
++ doi={10.1016/0097-3165(95)90052-7},
++ url={https://www.cs.columbia.edu/~djhsu/coms4995-s20/haussler-packing.pdf}}
++
++@misc{sadinle2018,
++ author={Sadinle, Mauricio and Lei, Jing and Wasserman, Larry},
++ title={Least Ambiguous Set-Valued Classifiers with Bounded Error Levels},
++ year={2018},note={arXiv:1609.00451v2; final preprint},
++ url={https://arxiv.org/abs/1609.00451}}
++@article{debruijn1951,
++ author={de Bruijn, N. G. and van Ebbenhorst Tengbergen, C. and Kruyswijk, D.},
++ title={On the Set of Divisors of a Number},
++ journal={Nieuw Archief voor Wiskunde, Series 2},volume={23},pages={191--193},year={1951},
++ url={https://pure.tue.nl/ws/files/4373475/597494.pdf}}

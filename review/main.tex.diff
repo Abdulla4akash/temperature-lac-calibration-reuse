@@ -1,0 +1,246 @@
+--- original/main.tex
++++ revised/main.tex
+@@ -1,17 +1,11 @@
+-\documentclass[11pt]{article}
+-\usepackage[T1]{fontenc}
+-\usepackage{lmodern}
+-\usepackage[margin=1in]{geometry}
++\documentclass[10pt]{article}
++\usepackage{tmlr}
+ \usepackage{amsmath,amssymb,amsthm,mathtools}
+ \usepackage{microtype,booktabs,array}
+-\usepackage[round,authoryear]{natbib}
+-\usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
+-\usepackage{xcolor}
+-\hypersetup{pdftitle={Sharp Class-Count Bounds for Temperature-Scaled Conformal Calibration Reuse},pdfauthor={Anonymous research manuscript},pdfsubject={Theory, correctness audit, and reproducible CPU evidence}}
+-\usepackage{enumitem}
+-\setlist{nosep,leftmargin=*}
+-\setlength{\parskip}{3pt}
+-\setlength{\emergencystretch}{2em}
++\usepackage{hyperref}
++\usepackage{url}
++\hypersetup{pdftitle={Sharp Class-Count Bounds for Calibration Reuse in Temperature-Scaled Conformal Prediction},pdfauthor={},pdfsubject={Statistical learning theory and conformal prediction}}
++\providecommand{\doi}[1]{\href{https://doi.org/#1}{doi: #1}}
+ \newtheorem{theorem}{Theorem}[section]
+ \newtheorem{lemma}[theorem]{Lemma}
+ \newtheorem{proposition}[theorem]{Proposition}
+@@ -29,29 +23,36 @@
+ \newcommand{\risk}{\mathfrak R}
+ \newcommand{\pos}[1]{\left[#1\right]_+}
+ \DeclareMathOperator*{\argmin}{arg\,min}
+-\title{Sharp Class-Count Bounds for Temperature-Scaled\ Conformal Calibration Reuse}
+-\author{Anonymous research manuscript for expert review}
+-\date{30 September 2026}
++\title{Sharp Class-Count Bounds for Calibration Reuse\\in Temperature-Scaled Conformal Prediction}
++\author{Anonymous authors}
++\date{}
+ \begin{document}
+ \maketitle
+ \begin{abstract}
+-A global temperature is one scalar, but conformal calibration depends on score orderings across examples rather than on the number of fitted coordinates. We characterize this distinction for nonrandomized least-ambiguous classification (LAC) with a fixed softmax model. Its temperature-and-threshold class has growth function at most $m+1+(K-2)m(m-1)$ and VC dimension $(1+o(1))\log_2 K$. A local realization theorem shows that one fixed $K$-class model can expose $K-1$ independently varying score coordinates at prescribed temperatures. This yields an explicit Beta-order-statistic formula for the coverage of an adversarial same-data selector. Combining the realization with empirical-process upper bounds gives a uniform finite-sample worst-case coverage-deficit rate of $\min\{1,\sqrt{\log K/n}\}$ at an interior finite-rank coverage level. The lower construction remains possible in any nonempty open positive-temperature interval with bounded logits, without a uniform margin or precision guarantee. Exact finite certificates and a reproduced three-class experiment illustrate the results. These are worst-selector statements for unmodified same-data LAC, not failure claims about likelihood-based tuning or impossibility results for validity-preserving reuse procedures.
++How much coverage can be lost when a single temperature is chosen using the same observations that calibrate a conformal prediction set? For nonrandomized least-ambiguous classification (LAC) with a fixed $K$-class softmax model, we prove that the temperature-and-threshold class has growth function at most $m+1+(K-2)m(m-1)$ and VC dimension $(1+o(1))\log_2 K$. The key lower construction is a local realization theorem: one classifier, fixed before calibration, can expose $K-1$ independent score coordinates at prescribed temperatures. This gives an exact Beta-order-statistic law for an adversarial selector's coverage. Together with a continuum upper bound, it yields a uniform finite-sample worst-selector marginal deficit of order $\min\{1,\sqrt{\log K/n}\}$ at interior finite-rank coverage levels, including the saturation regime. The lower bound persists under bounded logits and any nonempty open positive-temperature interval, although no uniform numerical margin is guaranteed. A three-class example illustrates the construction and retains a valid likelihood-tuning control. The results characterize unmodified same-data LAC; they neither establish failure of ordinary likelihood tuning nor exclude validity-preserving reuse methods.
+ \end{abstract}
+ 
+ \section{Introduction}
+-Temperature scaling adjusts softmax probabilities with a single global parameter and is widely used for probability calibration \citep{guo2017}. Conformal classification introduces a second operation: a score cutoff is calibrated to include the true label at a desired frequency. Using the same observations to choose the temperature and the cutoff can invalidate the ordinary fixed-score argument. The important question is not whether adaptive reuse can overfit, which is established, but \emph{how much complexity and coverage loss the actual temperature-scaled score family permits}.
+-
+-We answer this question for a fixed classifier and the nonrandomized LAC score $1-p_y$. Our main message is quantitative: the relevant capacity is finite but grows with class count. We prove a growth-function bound with explicit $K$ dependence, an asymptotically sharp VC characterization, and a uniform finite-sample characterization of worst-selector marginal coverage loss. A local softmax realization connects the structural statement to the conformal pipeline itself; a large VC dimension alone would not establish the coverage lower bound.
+-
+-The contribution is not a new general empirical-process theorem, a new extreme-value principle, or a general warning about parameter counting. It is the combination of a specific softmax geometry and a matching coverage construction within that geometry. Existing finite-family selection bounds already contain square-root logarithmic penalties \citep{yang2024}. General definability results already imply quadratic growth in the number of sampled points for a fixed two-parameter formula \citep{aschenbrenner2011}. Neither fact alone identifies the dependence on the number of softmax classes or realizes independent calibration coordinates within one fixed classifier.
+-
+-A motivating example is the dimension-only argument in \citet[arXiv v2, Lemmas D.3 and D.5]{zeng2025}, which assumes that continuity and boundedness imply a VC bound from parameter dimension. Those assumptions do not establish that conclusion. We do not make that correction the central contribution, nor do we dispute the same paper's standard empirical-process lemma or binary order-preservation result. Our results instead identify the structural quantity and an achievable coverage rate for the specific temperature family.
+-
+-\paragraph{What the results do not say.}
+-The lower selector is deliberately adversarial, not negative-log-likelihood (NLL) tuning. No claim is made that the worst case is common, that the displayed constants provide useful sample sizes, or that all ways of reusing observations must under-cover. Exact-valid post-selection methods alter the procedure and are not contradicted by our lower bound. Bounded logits and a restricted temperature interval do not, by themselves, impose a numerical resolution or a minimum margin.
++Temperature scaling changes a classifier's softmax probabilities through one global parameter \citep{guo2017}. In conformal classification, these probabilities also determine a score whose empirical quantile defines a prediction set. A fixed score admits the usual rank-based coverage guarantee. Choosing its temperature on the calibration observations makes the score data-dependent, so that argument no longer applies without further structure.
++
++The general possibility of selection bias is well understood. The unresolved structural question addressed here is more specific: \emph{what coverage cost can the actual one-temperature softmax family incur, and how does that cost depend on class count?} Preserving the label ordering within each example does not preserve the ordering of true-label probabilities across examples. It is the latter ordering that determines a LAC cutoff.
++
++We answer this question for a fixed classifier and nonrandomized LAC, whose score is $1-p_y$ \citep{sadinle2018}. The answer is neither an unrestricted overfitting pathology nor a class-count-independent one-parameter bound. The temperature-and-threshold family has VC dimension asymptotic to $\log_2 K$. At an interior finite-rank target and under iid sampling, its worst-selector marginal coverage deficit is, uniformly in $n$ and $K\ge3$,
++\[
++ \Theta\!\left(\min\left\{1,\sqrt{\frac{\log K}{n}}\right\}\right).
++\]
++The constants may depend on how far the target is from zero and one. The precise statement, including nominal-coverage rounding and the binary and full-set boundaries, appears in Theorem~\ref{thm:sharp} and Corollary~\ref{cor:nominal}.
++
++\paragraph{Contributions and proof structure.}
++First, an exponential-crossing argument bounds the growth function by $m+1+(K-2)m(m-1)$, with all degeneracies and threshold ties allowed. Second, a local realization theorem embeds $K-1$ independently varying coordinates into the true-label probabilities of one fixed classifier at prescribed temperatures. Combining this realization with a classical symmetric-chain decomposition gives a matching leading-order VC lower bound. Third, the same realization transfers independent order statistics into the \emph{actual} selected LAC coverage. A finite-sample Beta-minimum argument then matches the continuum upper rate, including its constant-order saturation. The construction is possible with bounded logits on arbitrarily restricted open temperature intervals, but its numerical margins need not be large.
++
++Finite-family selection bounds already contain square-root logarithmic penalties \citep{yang2024}. General definability results already imply quadratic growth in sample size for a fixed two-parameter formula \citep{aschenbrenner2011}. These facts do not by themselves give a coefficient uniform in the number of softmax classes or realize independent calibration coordinates within one fixed classifier. Our contribution is this explicit structural dependence and its coverage consequence, rather than a new general VC or extreme-value theorem. Section~\ref{sec:related} compares the relevant results in detail.
++
++\paragraph{Scope.}
++The lower bound uses an adversarial, calibration-only selector and unmodified LAC sets, which may be empty. It is not a failure theorem for negative-log-likelihood (NLL) tuning. Exact-valid post-selection procedures change the construction and are not contradicted. The theorem concerns worst-case statistical capacity in real arithmetic, not the frequency of failure in applications or the computational cost of a recommended tuning algorithm.
+ 
+ \section{Setup and distinct coverage quantities}\label{sec:setup}
+-Let $K\ge2$. An input $X$ is mapped to finite logits $z(X)\in\R^K$ by a Borel-measurable classifier fixed independently of calibration. We may condition on independent training data throughout. For inverse temperature $\beta>0$ and label $y\in\{1,\ldots,K\}$, define
++Let $K\ge2$. An input $X$ in a standard Borel space is mapped to finite logits $z(X)\in\R^K$ by a Borel-measurable classifier fixed independently of calibration. We may condition on independent training data throughout. For inverse temperature $\beta=1/T>0$ and label $y\in\{1,\ldots,K\}$, define
+ \begin{equation}\label{eq:softmax}
+  p_\beta(y\mid z)=\frac{e^{\beta z_y}}{\sum_{j=1}^K e^{\beta z_j}},
+  \qquad S_\beta(z,y)=1-p_\beta(y\mid z).
+@@ -62,7 +63,7 @@
+ \end{equation}
+ For $k=n+1$, the cutoff is $+\infty$ and $C_D(x)$ is the full label set. All claims about Beta order statistics below require $k\le n$.
+ 
+-Conditional coverage is $\Cov(D)=\Prob\{Y_{n+1}\in C_D(X_{n+1})\mid D\}$. We distinguish the expected conditional shortfall $\E\pos{p-\Cov(D)}$ from the marginal deficit $\pos{p-\E\Cov(D)}$. Jensen's inequality bounds the latter by the former, but they are not equal. Even a fixed valid score usually has a positive expected conditional shortfall. Neither quantity is automatically the difference of absolute coverage gaps called tuning bias by \citet{zeng2025}.
++Write $[x]_+=\max\{x,0\}$. Conditional coverage is $\Cov(D)=\Prob\{Y_{n+1}\in C_D(X_{n+1})\mid D\}$. We distinguish the expected conditional shortfall $\E\pos{p-\Cov(D)}$ from the marginal deficit $\pos{p-\E\Cov(D)}$. Jensen's inequality bounds the latter by the former, but they are not equal. Even a fixed valid score usually has a positive expected conditional shortfall. Neither quantity is automatically the difference of absolute coverage gaps called tuning bias by \citet{zeng2025}.
+ 
+ For a requested nominal coverage $c\in(0,1)$, ordinary conformal indexing sets $k=\lceil Nc\rceil$. Its finite-rank reference level is $p=k/N\in[c,c+1/N)$. A fixed temperature has marginal coverage at least $p$; for continuous true-label scores, it is exactly $p$. Results at $p$ translate to nominal coverage with the explicit rounding correction in Corollary~\ref{cor:nominal}.
+ 
+@@ -92,7 +93,7 @@
+ \end{theorem}
+ The upper bound is distribution-free. The restricted lower bound is existential and has no margin lower bound uniform in $K$, $I$, or $B$.
+ 
+-\subsection{Crossings, not parameter counting}
++\subsection{Bounding cross-example score crossings}
+ For a sampled point $(z_i,y_i)$, put $c_{ij}=z_{ij}-z_{iy_i}$ and
+ \begin{equation}\label{eq:denom}
+  A_i(\beta)=p_\beta(y_i\mid z_i)^{-1}=1+\sum_{j\ne y_i}e^{\beta c_{ij}}.
+@@ -110,7 +111,7 @@
+ \end{theorem}
+ To see the mechanism, choose distinct $c_j^0\in(-B,0)$ and let $F_r(c)=\sum_j e^{\beta_r c_j}$. The Jacobian $J_{rj}=\beta_r e^{\beta_r c_j^0}$ is nonsingular: a linear dependence would create an $M$-term exponential sum with $M$ distinct zeros. The inverse-function theorem supplies a local inverse. A sufficiently small translated cube fits inside its open image, giving~\eqref{eq:realization}. This is local interpolation by a fixed logit map, not post-calibration modification of the classifier.
+ 
+-The lower bound in Theorem~\ref{thm:structural} uses these coordinates to produce a family of score orderings. A symmetric-chain partition of the subsets of $m$ points has $\binom{m}{\lfloor m/2\rfloor}$ chains. Each chain extends to the prefixes of a permutation. One realized coordinate supplies each permutation, and a cutoff chooses its prefixes. Every subset is therefore obtained. The elementary chain construction and the full local-inverse argument are in Appendix~\ref{app:realization}.
++The lower bound in Theorem~\ref{thm:structural} uses these coordinates to produce a family of score orderings. The classical symmetric-chain partition of the subsets of $m$ points \citep{debruijn1951} has $\binom{m}{\lfloor m/2\rfloor}$ chains. Each chain extends to the prefixes of a permutation. One realized coordinate supplies each permutation, and a cutoff chooses its prefixes. Every subset is therefore obtained. The elementary chain construction and the full local-inverse argument are in Appendix~\ref{app:realization}.
+ 
+ \section{Coverage upper bound for arbitrary reuse}\label{sec:upper}
+ \begin{theorem}[Expected conditional shortfall]\label{thm:upper}
+@@ -176,17 +177,17 @@
+ \end{corollary}
+ The $1/(n+1)$ subtraction must not be silently omitted. For the last assertion use $\eta=\eta_0/2$ and note that the smallest rate over $K\ge3$ is at least $\sqrt{\log2/(n+1)}$; eventually rounding is at most half the lower bound. The resulting constants are not practical sample-size recommendations.
+ 
+-\paragraph{Relation to iterated asymptotics.}
+-A complementary, weaker calculation is also valid: for fixed $M$, $k=\lceil(n+1)c\rceil$, and $c\in(0,1)$,
++\paragraph{A complementary limit.}
++For fixed $M$, $k=\lceil(n+1)c\rceil$, and $c\in(0,1)$,
+ \begin{equation}\label{eq:iterated}
+  \sqrt n\,(p-\mu_{n,k,M})\longrightarrow
+  \sqrt{c(1-c)}\,\E\max_{r\le M}G_r,
+  \quad G_r\overset{\mathrm{iid}}\sim N(0,1).
+ \end{equation}
+-Taking $M\to\infty$ afterwards yields the usual $\sqrt{2\log M}$ factor. This iterated statement alone does not imply Theorem~\ref{thm:sharp}; the latter uses a separate finite-sample argument. Appendix~\ref{app:clt} verifies expectation convergence.
+-
+-\section{Exact certificates and numerical illustration}\label{sec:evidence}
+-Theoretical statements above do not depend on simulations. Computation has two roles: finite exact certificates that test delicate orderings, and a small implementation illustration of the coverage construction. No model was trained and no released real-data predictions were analyzed.
++Appendix~\ref{app:clt} proves expectation convergence. Subsequently increasing $M$ gives the usual $\sqrt{2\log M}$ factor. This iterated limit is distinct from the simultaneous finite-sample statement proved above.
++
++\section{A three-class illustration and finite certificates}\label{sec:evidence}
++Theoretical statements above do not depend on simulations. Computation has two roles: finite exact certificates that test delicate orderings, and a small implementation illustration of the coverage construction. No training or real-data claim is needed for these theoretical results.
+ 
+ \subsection{An explicit three-class model}
+ For $U_1,U_2$ independent uniform variables, define
+@@ -208,7 +209,7 @@
+ 
+ \begin{table}[t]
+ \centering\small
+-\caption{Reproduced three-class illustration, 10,000 iid calibration experiments, nominal coverage 90\%. Entries are percentages. Conditional fresh-test coverage is integrated analytically for each fitted set. Intervals quantify Monte Carlo uncertainty only.}\label{tab:coverage}
++\caption{Three-class illustration, 10,000 iid calibration experiments, nominal coverage 90\%. Entries are percentages. Conditional fresh-test coverage is integrated analytically for each fitted set. Intervals quantify Monte Carlo uncertainty only.}\label{tab:coverage}
+ \begin{tabular}{lrrrr}
+ \toprule
+ Procedure & Observations & Expected & Measured & 95\% MC interval\\
+@@ -217,53 +218,53 @@
+ Fixed temperature & 99 & 90.0000 & 89.9480 & [89.8896, 90.0063]\\
+ Independent tuning/calibration & 198 & 90.0000 & 90.0474 & [89.9889, 90.1060]\\
+ Same-total-data split & 99 & 90.0000 & 89.9411 & [89.8580, 90.0242]\\
+-NLL over the same grid & 99 & 90.0000 & 89.9965 & [89.9377, 90.0554]\\
++Analytic NLL grid control & 99 & 90.0000 & 89.9965 & [89.9377, 90.0554]\\
+ \bottomrule
+ \end{tabular}
+ \end{table}
+ 
+-Table~\ref{tab:coverage} reports an independently rerun calculation without changing seeds. The same-total-data control uses 50 tuning and 49 calibration observations, with rank $45$. The full independent control uses 99 observations for each stage. The paired independent-minus-reuse interval misses its theoretical expectation by 2.26 Monte Carlo standard errors; this retained discrepancy was not removed by rerunning seeds. Detailed reproduction records are supplied separately.
++Table~\ref{tab:coverage} uses 10,000 independent calibration samples with fixed seeds. The same-total-data control uses 50 tuning and 49 calibration observations, with rank $45$. The independent control uses 99 observations at each stage. The implementation computes softmax scores and conformal quantiles; conditional fresh-test coverage is then integrated analytically. The NLL control uses its analytically determined choice $\beta=2$, rather than running a numerical optimizer. The supplementary material gives raw outputs, uncertainty calculations, and reproduction instructions.
+ 
+ \paragraph{Negative controls delimit the example.}
+ All true labels are the unique argmax. Increasing $\beta$ improves their likelihood for every observation, so the NLL grid selector always chooses $\beta=2$ and does not under-cover in this construction. Adding the argmax label to every prediction set likewise eliminates this example's failures. The theorem concerns ordinary LAC, which permits empty sets, not that modified rule.
+ 
+ \subsection{Exact ordering certificates}
+-An exploratory floating-point search suggested a four-class witness, but it was false: exact rational evaluation supports only seven of its eight claimed patterns. It remains rejected. Distinct new witnesses use the symmetric-chain construction and a rational linear system with an analytic Taylor remainder. They certify eight patterns on three points with $K=4$, and sixteen patterns on four points with $K=7$. This proves $d_4\ge3$, not an exact value for $d_4$. Other valid search witnesses and the failed candidate are retained. Appendix~\ref{app:certificates} describes the certificate so that high-precision numerics are not mistaken for proof.
+-
+-\section{Related work and precise separation}\label{sec:related}
++Finite certificates instantiate the symmetric-chain construction using rational linear algebra and an analytic Taylor remainder. They establish eight patterns on three points with $K=4$ and sixteen patterns on four points with $K=7$, hence $d_4\ge3$ and $d_7\ge4$. These are lower bounds, not exact dimensions at those class counts. Appendix~\ref{app:certificates} describes the certificates. An earlier floating-point candidate failed exact verification; it is excluded from every claim and retained in the supplementary negative-result record.
++
++\section{Related work}\label{sec:related}
+ \paragraph{Temperature and conformal prediction.}
+ \citet{dabah2025} study the effect of temperature on conformal efficiency and coverage trade-offs, particularly for adaptive classification scores. \citet{mattei2026} develop elementary temperature-scaling properties, including within-example ordering and likelihood structure. Neither within-example label-order preservation nor the existence of a temperature trade-off is claimed here. Our object is the set of true-label score orderings \emph{across examples}, together with an adaptive LAC cutoff.
+ 
++\paragraph{Complexity-based reuse bounds.}
++\citet{zeng2025} analyze tuning bias through an empirical-process discrepancy and establish binary order preservation. Their Lemma D.6 supplies the standard VC transfer. However, the parameter-count argument in arXiv v2, Lemmas D.3--D.5, does not follow from continuity and boundedness alone. Rather than using those assumptions as a capacity bound, we calculate the complexity of the specific temperature family. The growth of $d_K$ in Theorem~\ref{thm:structural} rules out a class-count-independent VC bound for this family. This does not refute their empirical observations about particular tuning rules.
++
+ \paragraph{Reuse, model selection, and validity.}
+ \citet[Theorem 1]{yang2024} give finite-family coverage costs and also study additional splitting. \citet[Theorems 3.1 and 3.3]{liang2026} obtain exact-valid post-selection conformal procedures by restoring suitable symmetry. \citet{wang2026} use localized model selection, and \citet{hegazy2025} study stability-based selection guarantees. These results address procedures or restrictions absent from our adversarial unmodified rule. They remain alternatives, not targets of an impossibility claim. We do not establish a new algorithmic advantage over them.
+ 
+ \paragraph{Complexity of exponential families.}
+-\citet{karpinski1997} bound VC complexity in general Pfaffian and sigmoidal settings using geometry of parameter-space sign conditions. \citet[Theorem 1.1]{aschenbrenner2011} bound VC density by the number of parameters in weakly o-minimal theories. For a fixed $K$ in the real exponential structure, the latter implies an $O_K(m^2)$ growth bound. Quadratic growth for a fixed two-parameter definable class is therefore not new. Our explicit coefficient in~\eqref{eq:growth}, class-count VC asymptotics, fixed-model realization, and coverage transfer are the more specific assertions requiring comparison. The proof uses classical exponential zero counting, local inversion, and symmetric chains; we do not claim those tools as discoveries.
++\citet{karpinski1997} bound VC complexity in general Pfaffian and sigmoidal settings using geometry of parameter-space sign conditions. \citet[Theorem 1.1]{aschenbrenner2011} bound VC density by the number of parameters in weakly o-minimal theories. For a fixed $K$ in the real exponential structure, the latter implies an $O_K(m^2)$ growth bound. Quadratic growth for a fixed two-parameter definable class is therefore not new. Our explicit coefficient in~\eqref{eq:growth}, class-count VC asymptotics, fixed-model realization, and coverage transfer retain the class-count information that the fixed-formula result leaves implicit. The proof uses classical exponential zero counting, local inversion, and symmetric chains; we do not claim those tools as discoveries.
+ 
+ \paragraph{Probability and empirical-process background.}
+-Expected VC inequalities, obtained from entropy and symmetrization, are standard \citep{haussler1995,vershynin2018}. Beta lower tails and logarithmic extreme-value effects are also established \citep{zhang2020}. The probability lemma here is included for a self-contained finite-sample transfer. The potential advance lies in proving that this behavior is available inside a single, bounded-logit, globally temperature-scaled classifier, and in matching it with a continuum upper bound. These statements are more specialized than the general tools used to prove them.
++Expected VC inequalities, obtained from entropy and symmetrization, are standard \citep{haussler1995}. Beta lower tails and logarithmic extreme-value effects are also established \citep{zhang2020}. The probability lemma here is included for a self-contained finite-sample transfer. The softmax-specific conclusion is that this behavior is available inside a single, bounded-logit, globally temperature-scaled classifier and is matched by a continuum upper bound. The independent-coordinate realization is the link between the constrained score family and the probability calculation.
+ 
+ \section{Limitations and interpretation}
+ The asymptotically leading VC coefficient and the finite-rank worst-case rate are precise, but several limits matter. The exact VC dimension is not determined for every fixed $K$; the second-order upper and lower terms in~\eqref{eq:vcbounds} do not match. The realization radius can be extremely small. Compact temperature ranges and bounded logits do not control finite precision, quantization, or probability margins. We provide no uniform bit-complexity guarantee.
+ 
+ The lower selector uses a normalized empirical cutoff constructed to expose the effect. It is neither NLL tuning nor a demonstrated practical set-size optimizer. No real-data prevalence, efficiency gain, set-size benefit, or benchmark reversal has been established. The generic upper bound can be conservative, and its unspecified universal constant is not an operational correction. An algorithm-specific guarantee would require additional analysis, such as usable stability or likelihood-curvature conditions, and cannot be read off from the worst-selector theorem.
+ 
+-Our iid setting is narrower than general exchangeability. The model must be fixed independently of calibration; joint retraining, covariate shift, vector scaling, feature-dependent temperature, randomized scores, and forced-argmax LAC are outside the claims. The standalone mathematical contribution does not depend on whether a motivating correction has already been discussed elsewhere. Nevertheless, priority for this specialized combination requires expert scrutiny of the closest literature, particularly related complexity results.
++Our iid setting is narrower than general exchangeability. The model must be fixed independently of calibration; joint retraining, covariate shift, vector scaling, feature-dependent temperature, randomized scores, and forced-argmax LAC are outside the claims. 
+ 
+ \section{Conclusion}
+ For ordinary temperature-scaled LAC, the relevant capacity is controlled but class-count dependent. A global scalar temperature and an adaptive cutoff can express enough cross-example orderings to give VC dimension asymptotic to $\log_2 K$. A fixed-model interpolation converts that capacity into an exact coverage law and a uniform, capped square-root-logarithmic worst-selector deficit. This delineates the strongest distribution-free rate available for the unmodified procedure while leaving ordinary likelihood tuning and exact-valid reuse methods as distinct questions.
+ 
+-\paragraph{Reproducibility and status.}
+-The accompanying package contains preserved source material, separately rerun results, exact certificates, numerical scripts, full protocols, resource logs, and correctness/novelty audits. This is a research manuscript for expert review, not an externally refereed result. No independent human or proof-assistant verification is claimed. The research, audit, and drafting used AI assistance; authorship and submission declarations require author review.
+-
+-\clearpage
+-\begingroup
+-\small
+-\setlength{\bibsep}{4pt}
+-\interlinepenalty=10000
+-\bibliographystyle{plainnat}
++\section*{Reproducibility statement}
++The supplementary code reproduces the numerical illustration, exact finite certificates, and boundary checks without model training or inference services. Complete proofs are included below; simulations are not used to justify universal statements. The supplement distinguishes rational certificates, deterministic numerical integration, and Monte Carlo results, and preserves failed witnesses and negative controls.
++
++\section*{Use of generative AI}
++Generative AI tools assisted mathematical exploration, code development, proof review, and manuscript drafting. No independent external mathematical validation is claimed.
++
++\bibliographystyle{tmlr}
+ \bibliography{references}
+-\endgroup
+ 
+ \clearpage
+ \appendix
+@@ -284,7 +285,7 @@
+ \end{proof}
+ 
+ \begin{proof}[VC upper asymptotics]
+-For a shattered set of $d\ge2$ points, $2^d\le d+1+(K-2)d(d-1)\le Kd^2$. The last inequality holds for $K\ge2,d\ge2$. First this implies $d=O(\log K)$: exponential growth eventually exceeds $Kd^2$, and evaluating at a sufficiently large multiple of $\log K$ bounds the last possible solution. Taking base-two logarithms gives $d\le\log_2K+2\log_2 d$, and substitution of $d=O(\log K)$ proves the claimed upper expansion. The finitely many small $K$ are absorbed into the constant when using $d_K\le C_0\log K$ in a uniform inequality.
++For a shattered set of $d\ge2$ points, $2^d\le d+1+(K-2)d(d-1)\le Kd^2$. The last inequality holds for $K\ge2,d\ge2$. Writing $L=\log_2K\ge1$, the function $x-2\log_2x$ is increasing for $x\ge4$ and its value at $4(L+1)$ exceeds $L$. Hence $d<4(L+1)$, in particular $d=O(\log K)$. Taking base-two logarithms gives $d\le\log_2K+2\log_2 d$, and substitution of $d=O(\log K)$ proves the claimed upper expansion. The finitely many small $K$ are absorbed into the constant when using $d_K\le C_0\log K$ in a uniform inequality.
+ \end{proof}
+ 
+ \section{Realization and the refined combinatorial lower bound}\label{app:realization}
+@@ -303,7 +304,7 @@
+ These definitions prove all identities, bounds, and smoothness claims. The common $\delta$ may depend on all prescribed temperatures and on $B,K,c^0$. No lower bound on it independent of these choices is asserted. All choices precede the sample. A prescribed open interval contains any finite number of distinct temperatures, proving the restricted-interval assertion.
+ \end{proof}
+ 
+-\begin{lemma}[Symmetric chains]\label{lem:chains}
++\begin{lemma}[Symmetric chains; \citealp{debruijn1951}]\label{lem:chains}
+ The subsets of an $m$-element set can be partitioned into $\binom m{\lfloor m/2\rfloor}$ saturated chains, each with endpoint cardinalities summing to $m$.
+ \end{lemma}
+ \begin{proof}
+@@ -354,7 +355,7 @@
+  \frac1{\sqrt n}\int_0^1\sqrt{d\log(c_2/\epsilon)}\,d\epsilon
+  =O(\sqrt{d/n}).
+ \]
+-Symmetrization changes only the universal constant. This is the expected VC bound in \citet[Theorem 8.3.23]{vershynin2018}; it is not derived from a union bound on all empirical patterns, which would introduce an unnecessary $\log n$ factor.
++Symmetrization changes only the universal constant. This standard expected bound is also stated in \citet[Lemma D.6]{zeng2025}. A union bound on all empirical patterns would instead introduce an unnecessary $\log n$ factor.
+ 
+ For readers needing a completely explicit, looser expression, define
+ $B_{K,n}=\min\{2^n,n+1+(K-2)n(n-1)\}$. Conditional on the sample there are at most $B_{K,n}$ trace vectors of Euclidean norm at most $\sqrt n$. The finite-class Rademacher maximum bound and symmetrization give
+@@ -454,6 +455,6 @@
+ \]
+ Adjacent target ranks differ by one, so their actual denominators remain separated by at least $3/4$ of the first-order step. These rational linear identities and inequalities certify the requested orderings. Evaluating exponentials to 160 decimal digits is secondary corroboration. The new files certify $(m,K)=(3,4)$ and $(4,7)$; the original failed four-class witness has different logits and remains false.
+ 
+-\subsection{What was reproduced and what was added}
+-The original exploratory search, exact integer witness audit, interpolation checks, coverage experiment, and 15 tests were rerun in a separate directory. Main and diagnostic outputs and all 20 raw arrays agree with the originals. Twelve new named tests cover quantile boundaries, exact polynomial integrals, rational crossings, the explicit embedding, and finite checks on the Beta density argument. Ten finite symmetric-chain decompositions and two new Taylor certificates were checked separately. A fixed 48-cell numerical integration grid illustrates the Beta law; it is not a proof or an additional Monte Carlo study. Protocols, failed witnesses, negative controls, actual environment, and per-command resource records are supplied outside the manuscript.
++\subsection{Verification records}
++The supplementary material records exact and numerical verification separately. It includes the rejected floating-point witness, the rational crossing check for the three-class boundary, both Taylor certificates, the full-set quantile boundary, all simulation outputs, and the deterministic Beta-law grid. Runtime and protocol details are kept there rather than used as evidence for a universal theorem.
+ \end{document}

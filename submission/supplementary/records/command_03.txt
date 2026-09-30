@@ -1,0 +1,72 @@
+{
+  "main": [
+    {
+      "name": "reuse",
+      "replications": 10000,
+      "mean_coverage": 0.8828480197653218,
+      "exact_expectation": 0.8832868013664341,
+      "MC_SE": 0.00027311634950938623,
+      "CI95_low": 0.8823127117202834,
+      "CI95_high": 0.8833833278103602,
+      "z_from_exact": -1.6065739085211599
+    },
+    {
+      "name": "fixed",
+      "replications": 10000,
+      "mean_coverage": 0.8994795393474396,
+      "exact_expectation": 0.9,
+      "MC_SE": 0.0002977274958789328,
+      "CI95_low": 0.898895993455517,
+      "CI95_high": 0.9000630852393623,
+      "z_from_exact": -1.7481108052312166
+    },
+    {
+      "name": "independent",
+      "replications": 10000,
+      "mean_coverage": 0.9004741031452453,
+      "exact_expectation": 0.9,
+      "MC_SE": 0.0002986899450622493,
+      "CI95_low": 0.8998886708529233,
+      "CI95_high": 0.9010595354375673,
+      "z_from_exact": 1.587275209905417
+    },
+    {
+      "name": "same_total_split",
+      "replications": 10000,
+      "mean_coverage": 0.8994111466243192,
+      "exact_expectation": 0.9,
+      "MC_SE": 0.0004239283218359557,
+      "CI95_low": 0.8985802471135207,
+      "CI95_high": 0.9002420461351177,
+      "z_from_exact": -1.3890399516847667
+    },
+    {
+      "name": "NLL_grid_control",
+      "replications": 10000,
+      "mean_coverage": 0.8999654023921808,
+      "exact_expectation": 0.9,
+      "MC_SE": 0.0003001965879182352,
+      "CI95_low": 0.8993770170798611,
+      "CI95_high": 0.9005537877045006,
+      "z_from_exact": -0.11524983697893439
+    }
+  ],
+  "paired": {
+    "name": "paired_independent_minus_reuse",
+    "replications": 10000,
+    "mean_coverage": 0.017626083379923666,
+    "exact_expectation": 0.016713198633565907,
+    "MC_SE": 0.00040380876400129785,
+    "CI95_low": 0.01683461820248112,
+    "CI95_high": 0.01841754855736621,
+    "z_from_exact": 2.2606858189804555
+  },
+  "identity_max_abs_error": 7.605027718682322e-14,
+  "gates": {
+    "softmax_identity_maxerror_below_1e-10": true,
+    "main_and_controls_within_5_MC_SE": true,
+    "diagnostic_rows_within_5_MC_SE": true
+  },
+  "CPU_seconds": 2.5627139530000003,
+  "max_RSS_KiB": 153764
+}

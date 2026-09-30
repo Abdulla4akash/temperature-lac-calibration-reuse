@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-30",
+  "status": "Local prospective protocol for a theoretical extension; not external preregistration",
+  "relationship_to_original": "Written after the original witness search and exact rejection of the K=4 floating-point witness. Original protocol/results remain unchanged. The coverage embedding was derived analytically before this new simulation.",
+  "question": "Does the explicit K=3 two-temperature softmax embedding reproduce the exact minimum-of-independent-order-statistics coverage law?",
+  "main": {"n": 99, "K": 3, "inverse_temperatures": [1,2], "delta": 0.01, "replications": 10000, "seed": 2026093001, "nominal_coverage": 0.9},
+  "construction": "Independent U1,U2 uniform[0,1]; s=1+delta*U1, v=5/8+delta*U2, w_minus/plus=(s-/+sqrt(2v-s^2))/2; logits=[0,log(w_minus),log(w_plus)]; true label=0.",
+  "selector": "Select the inverse temperature with the smallest baseline-normalized empirical conformal quantile. This is an adversarial calibration-data-only selector, NOT negative-log-likelihood tuning.",
+  "controls": ["fixed inverse temperature 1", "independent 99-observation calibration after tuning", "same-total-data split: first 50 observations tune, remaining 49 calibrate", "ordinary NLL tuning restricted to the same grid {1,2}; chooses 2 because all predictions are correct"],
+  "diagnostics": {"n_values": [99,499,1999], "M_values": [1,2,4,16,64], "replications": 20000, "seed": 2026093002, "interpretation": "Direct Beta sampling of the analytically derived law; not physical logits simulations for M>2"},
+  "criteria": ["Maximum absolute discrepancy between recovered latent cutoffs and raw order statistics below 1e-10", "Every input maps to positive distinct roots below one, by both analytic interval bounds and checks", "Main mean coverage is within five Monte Carlo standard errors of quadrature expectation", "Independent/fixed/split/NLL controls within five Monte Carlo standard errors of their exact expectations", "Report all failures and do not rerun seeds to obtain success"],
+  "budget": {"CPU_seconds": 60, "memory_MiB": 256},
+  "scope": "Mathematical construction validation; no real-data efficacy, no NLL failure claim, no claim that ordinary full-conformal methods cannot achieve validity. Empty LAC sets are permitted."
+}

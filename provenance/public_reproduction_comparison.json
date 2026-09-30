@@ -1,0 +1,155 @@
+{
+  "status": "PASS_NUMERICAL",
+  "exact": false,
+  "numerical_agreement": true,
+  "tolerances": {
+    "array_atol": 1e-12,
+    "array_rtol": 0.0,
+    "csv_atol": 1e-12,
+    "csv_rtol": 1e-10
+  },
+  "tables": {
+    "coverage_main.csv": {
+      "exact": true,
+      "numerical_agreement": true,
+      "changed_cells": 0,
+      "max_absolute_difference": 0.0,
+      "failures": []
+    },
+    "coverage_law_diagnostics.csv": {
+      "exact": false,
+      "numerical_agreement": true,
+      "changed_cells": 25,
+      "max_absolute_difference": 2.7826629889204924e-12,
+      "failures": []
+    }
+  },
+  "raw_arrays": {
+    "exact": false,
+    "numerical_agreement": true,
+    "arrays": {
+      "reuse": {
+        "exact": true,
+        "numerical_agreement": true,
+        "max_absolute_difference": 0.0,
+        "changed_entries": 0
+      },
+      "fixed": {
+        "exact": true,
+        "numerical_agreement": true,
+        "max_absolute_difference": 0.0,
+        "changed_entries": 0
+      },
+      "independent": {
+        "exact": true,
+        "numerical_agreement": true,
+        "max_absolute_difference": 0.0,
+        "changed_entries": 0
+      },
+      "same_total_split": {
+        "exact": true,
+        "numerical_agreement": true,
+        "max_absolute_difference": 0.0,
+        "changed_entries": 0
+      },
+      "NLL_grid_control": {
+        "exact": true,
+        "numerical_agreement": true,
+        "max_absolute_difference": 0.0,
+        "changed_entries": 0
+      },
+      "n99_M1": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 410
+      },
+      "n99_M2": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 3.3306690738754696e-16,
+        "changed_entries": 457
+      },
+      "n99_M4": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 583
+      },
+      "n99_M16": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 970
+      },
+      "n99_M64": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 3.3306690738754696e-16,
+        "changed_entries": 1342
+      },
+      "n499_M1": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 183
+      },
+      "n499_M2": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 200
+      },
+      "n499_M4": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 262
+      },
+      "n499_M16": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 365
+      },
+      "n499_M64": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 483
+      },
+      "n1999_M1": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 101
+      },
+      "n1999_M2": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 84
+      },
+      "n1999_M4": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 128
+      },
+      "n1999_M16": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 3.3306690738754696e-16,
+        "changed_entries": 171
+      },
+      "n1999_M64": {
+        "exact": false,
+        "numerical_agreement": true,
+        "max_absolute_difference": 2.220446049250313e-16,
+        "changed_entries": 243
+      }
+    },
+    "failures": []
+  },
+  "strict_match_required": false
+}

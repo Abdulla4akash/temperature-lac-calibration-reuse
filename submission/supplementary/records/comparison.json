@@ -1,0 +1,26 @@
+{
+  "coverage_main.csv": true,
+  "coverage_law_diagnostics.csv": true,
+  "raw_arrays": {
+    "reuse": true,
+    "fixed": true,
+    "independent": true,
+    "same_total_split": true,
+    "NLL_grid_control": true,
+    "n99_M1": true,
+    "n99_M2": true,
+    "n99_M4": true,
+    "n99_M16": true,
+    "n99_M64": true,
+    "n499_M1": true,
+    "n499_M2": true,
+    "n499_M4": true,
+    "n499_M16": true,
+    "n499_M64": true,
+    "n1999_M1": true,
+    "n1999_M2": true,
+    "n1999_M4": true,
+    "n1999_M16": true,
+    "n1999_M64": true
+  }
+}

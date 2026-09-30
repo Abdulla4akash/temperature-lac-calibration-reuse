@@ -1,0 +1,13 @@
+Claim,Manuscript location,Evidence type,Supporting artifact or argument,Scope
+Growth bound,Theorem 3.1; Appendix A,Mathematical proof,Exponential zero count plus planar insertion; ties handled,No tests prove universality
+Local coordinates,Theorem 3.2; Appendix B,Mathematical proof,Invertible exponential Jacobian; local inverse; common delta,Fixed before calibration; real arithmetic
+VC class dependence,Theorem 3.1; Appendix B,Mathematical proof,Symmetric chains and binomial asymptotics,Not all exact finite-K dimensions
+Small classes,Proposition C.1,Mathematical proof and exact check,Binary ordering; three-class cosh derivative; reference/results/exact_integer_audit.json,d4 and d7 are lower bounds only
+Coverage upper,Theorem 4.1; Appendix D,Mathematical proof,Empirical inclusion plus separable VC entropy bound,iid; fixed classifier; expected conditional shortfall
+Coverage law,Theorem 5.1; Appendix E,Mathematical proof,Product-coordinate order statistics and independent fresh input,Beta law only k<=n
+Uniform matched rate,Lemma 5.2; Theorem 5.4; Appendix E,Mathematical proof,Explicit Beta density envelope and independent events,Interior p; n+1>=16/eta^2; adversarial selector
+Nominal correction,Corollary 5.5,Mathematical proof,Finite-rank rounding <1/(n+1),No uncorrected nominal lower claim
+Exact numerical mean,Equation 19; Appendix G.1,Exact rational certificate,supplementary/code/audit_checks.py,Quadrature separate
+K4 and K7 witnesses,Section 6.2; Appendix G.2,Rational identities plus analytic Taylor bound,supplementary/code/chain_certificate.py,Earlier floating-point candidate remains rejected
+Three-class illustration,Table 1,Monte Carlo; original data reproduced,supplementary/reference/results/coverage_main.csv and coverage_raw.npz,NLL analytic grid control; no real-data finding
+Boundary implementation,Supplement,Deterministic unit tests,supplementary/code/boundary_tests.py,8 new tests; original n99 unchanged

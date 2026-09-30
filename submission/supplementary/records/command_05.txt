@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "tests": 12,
+  "new_diagnostic_cells": 48,
+  "primary_exact_coverage": 0.8832868013664341
+}

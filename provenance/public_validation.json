@@ -1,0 +1,19 @@
+{
+  "validation_status": "PASS_NUMERICAL",
+  "research_test_methods": 35,
+  "comparison_test_methods": 8,
+  "total_test_methods": 43,
+  "main_csv_exact": true,
+  "exact_raw_arrays": 5,
+  "raw_arrays": 20,
+  "max_raw_absolute_difference": 3.3306690738754696e-16,
+  "max_diagnostic_csv_absolute_difference": 2.7826629889204924e-12,
+  "input_revision_zip_sha256": "b6ddca5d97276c78d4b05293f699b0bbca836ecf330ce510f4af8b5caef06e3c",
+  "manuscript_pdf_sha256": "87df2f718dced7f99b9e0119a83853cb57c2d3d89af08c9c7e5ab68cc2fe8f5f",
+  "manuscript_identical_to_download": true,
+  "platform": "macOS ARM64",
+  "python": "3.13.5",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "note": "Local verification; no new scientific experiment or independently reviewed theorem."
+}

@@ -1,0 +1,20 @@
+test_actual_softmax_identity (__main__.ResearchTests.test_actual_softmax_identity) ... ok
+test_beta_single_model_mean (__main__.ResearchTests.test_beta_single_model_mean) ... ok
+test_binary_invariance_via_exact_order (__main__.ResearchTests.test_binary_invariance_via_exact_order) ... ok
+test_explicit_embedding_exact_corner_bounds (__main__.ResearchTests.test_explicit_embedding_exact_corner_bounds) ... ok
+test_explicit_embedding_numerical_corners (__main__.ResearchTests.test_explicit_embedding_numerical_corners) ... ok
+test_extension_protocol_hash (__main__.ResearchTests.test_extension_protocol_hash) ... ok
+test_false_float_witness_preserved (__main__.ResearchTests.test_false_float_witness_preserved) ... ok
+test_grid_NLL_selector_is_beta_two (__main__.ResearchTests.test_grid_NLL_selector_is_beta_two) ... ok
+test_integer_certificates_independent_recompute (__main__.ResearchTests.test_integer_certificates_independent_recompute) ... ok
+test_interpolation_rational_identities (__main__.ResearchTests.test_interpolation_rational_identities) ... ok
+test_original_protocol_hash (__main__.ResearchTests.test_original_protocol_hash) ... ok
+test_power_sum_jacobian_exact (__main__.ResearchTests.test_power_sum_jacobian_exact) ... ok
+test_quantile_off_by_one (__main__.ResearchTests.test_quantile_off_by_one) ... ok
+test_raw_diagnostics_summary (__main__.ResearchTests.test_raw_diagnostics_summary) ... ok
+test_raw_main_summary (__main__.ResearchTests.test_raw_main_summary) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.074s
+
+OK

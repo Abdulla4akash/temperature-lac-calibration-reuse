@@ -1,0 +1,29 @@
+{
+  "n": 99,
+  "k": 90,
+  "M": 2,
+  "coverage_fraction": "5214610247405709/5903643345897130",
+  "coverage_decimal": 0.8832868013664341,
+  "quadrature": 0.8832868013664343,
+  "quad_error_estimate": 7.763643014996471e-12,
+  "absolute_discrepancy": 2.220446049250313e-16,
+  "K3_exact_witness": [
+    {
+      "exp_beta": "11/10",
+      "denominators": [
+        "59516901511/25937424601",
+        "34641/14641"
+      ],
+      "difference": "-1851743090/25937424601"
+    },
+    {
+      "exp_beta": "2",
+      "denominators": [
+        "1537/1024",
+        "9/8"
+      ],
+      "difference": "385/1024"
+    }
+  ],
+  "type": "Exact rational polynomial integration; decimal is a rounded display"
+}

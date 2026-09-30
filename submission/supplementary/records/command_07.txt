@@ -1,0 +1,13 @@
+test_decimal_and_rational_rank (__main__.SubmissionBoundaryTests.test_decimal_and_rational_rank) ... ok
+test_finite_softmax_identity (__main__.SubmissionBoundaryTests.test_finite_softmax_identity) ... ok
+test_full_set_all_small_samples (__main__.SubmissionBoundaryTests.test_full_set_all_small_samples) ... ok
+test_full_to_finite_boundary (__main__.SubmissionBoundaryTests.test_full_to_finite_boundary) ... ok
+test_input_domains (__main__.SubmissionBoundaryTests.test_input_domains) ... ok
+test_invalid_family_size (__main__.SubmissionBoundaryTests.test_invalid_family_size) ... ok
+test_rank_validation (__main__.SubmissionBoundaryTests.test_rank_validation) ... ok
+test_ties (__main__.SubmissionBoundaryTests.test_ties) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.013s
+
+OK

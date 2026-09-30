@@ -1,0 +1,42 @@
+{
+  "recorded_commands": [
+    {
+      "file": "search_timing.txt",
+      "user_seconds": 6.08,
+      "system_seconds": 0.08,
+      "CPU_seconds": 6.16,
+      "peak_RSS_KiB": 102824
+    },
+    {
+      "file": "integer_audit_timing.txt",
+      "user_seconds": 0.98,
+      "system_seconds": 0.07,
+      "CPU_seconds": 1.05,
+      "peak_RSS_KiB": 92592
+    },
+    {
+      "file": "interpolation_timing.txt",
+      "user_seconds": 1.37,
+      "system_seconds": 0.16,
+      "CPU_seconds": 1.53,
+      "peak_RSS_KiB": 123052
+    },
+    {
+      "file": "coverage_timing.txt",
+      "user_seconds": 2.78,
+      "system_seconds": 0.24,
+      "CPU_seconds": 3.02,
+      "peak_RSS_KiB": 156564
+    },
+    {
+      "file": "tests_timing.txt",
+      "user_seconds": 1.64,
+      "system_seconds": 0.11,
+      "CPU_seconds": 1.75,
+      "peak_RSS_KiB": 155716
+    }
+  ],
+  "total_CPU_seconds": 13.51,
+  "maximum_RSS_MiB": 152.89453125,
+  "scope": "Five research commands only. Excludes literature retrieval, reasoning, writing, setup, packaging, and closeout verification. Hosted CPU, not laptop."
+}

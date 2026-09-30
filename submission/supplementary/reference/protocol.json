@@ -1,0 +1,22 @@
+{
+  "created_date": "2026-09-30",
+  "status": "Local analysis plan; not an externally timestamped preregistration",
+  "scope": "Theory validation and cheapest adversarial finite witnesses; no claim of empirical performance discovery",
+  "selected_candidate": "C: worst-case threshold VC complexity of global positive temperature-scaled softmax with K classes, and implications for reuse",
+  "claims_to_check": [
+    "LAC growth at m points is no larger than m+1+(2K-4)*m*(m-1)/2",
+    "The LAC class has VC dimension at least floor(log2(K-1)), via finite exponential interpolation",
+    "The binary LAC prediction set is exactly invariant to any positive temperature",
+    "An explicitly exhibited finite shattering witness is checked with exact rational arithmetic, not only floating point"
+  ],
+  "exploratory_search": {"seed": 20260930, "classes": [3,4,5,6,9], "points": 3, "max_trials_each": 20000, "grid_points": 240, "logit_integer_min": -20, "logit_integer_max": 20, "halt_each_at_full_shattering": true, "purpose": "Find readable witnesses; failed searches are not upper-bound proofs"},
+  "interpolation_validation": {"m_values": [1,2,3,4], "precision_decimal_digits": 160, "sign_margin_check": "Explicit Taylor remainder certificate; no p-values"},
+  "budget": {"no_gpu": true, "no_model_api": true, "max_total_CPU_seconds": 1200, "target_memory_MiB": 512},
+  "decision_rules": [
+    "Discard any universal claim contradicted by a valid counterexample",
+    "Do not claim that a VC lower bound proves a lower bound for NLL-tuned conformal undercoverage",
+    "Do not claim finite simulation proves global root counts or universal validity",
+    "Do not claim an exact no-loss reuse procedure from an approximate uniform convergence bound",
+    "Do not draft a conference paper until priority and practical significance are established"
+  ]
+}
